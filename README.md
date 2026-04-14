@@ -35,7 +35,7 @@ Celular → Supabase Storage → Edge Function → OCR.space → PostgreSQL
 
 ```bash
 git clone https://github.com/Fabian-17/pic_to_text.git
-cd snaptext/receipt-scanner
+cd pic_to_text/
 npm install
 ```
 
