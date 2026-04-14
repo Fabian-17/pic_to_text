@@ -92,7 +92,7 @@ export default function ReceiptDetailScreen() {
       {/* Meta */}
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Información</Text>
-        <Row label="Fecha" value={date} />
+        <Row label="Fecha de escaneo" value={date} />
         <Row label="Estado" value={statusLabel[receipt.status] ?? receipt.status} />
 
         {receipt.quality_score !== null && (
@@ -115,6 +115,28 @@ export default function ReceiptDetailScreen() {
           </View>
         )}
       </View>
+
+      {/* Datos detectados por OCR */}
+      {(receipt.parsed_amount !== null || receipt.parsed_date !== null) && (
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Datos detectados</Text>
+          {receipt.parsed_amount !== null && (
+            <Row
+              label="Monto total"
+              value={`$ ${receipt.parsed_amount.toLocaleString('es', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
+              valueColor="#16a34a"
+            />
+          )}
+          {receipt.parsed_date !== null && (
+            <Row
+              label="Fecha del documento"
+              value={new Date(receipt.parsed_date + 'T12:00:00').toLocaleDateString('es-ES', {
+                day: '2-digit', month: 'long', year: 'numeric',
+              })}
+            />
+          )}
+        </View>
+      )}
 
       {/* Texto extraído */}
       <View style={styles.card}>

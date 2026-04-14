@@ -63,6 +63,12 @@ export function ReceiptCard({ receipt, onPress, onDelete, highlightQuery }: Rece
               Calidad: {receipt.quality_score}/100
             </Text>
           )}
+
+          {receipt.parsed_amount !== null && (
+            <Text style={styles.amount}>
+              $ {receipt.parsed_amount.toLocaleString('es', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </Text>
+          )}
         </View>
 
         {/* Eliminar */}
@@ -139,6 +145,7 @@ const styles = StyleSheet.create({
   preview: { fontSize: 13, color: '#374151', lineHeight: 18 },
   placeholderText: { fontSize: 13, color: '#9ca3af', fontStyle: 'italic' },
   quality: { fontSize: 11, color: '#9ca3af', marginTop: 5 },
+  amount: { fontSize: 14, color: '#16a34a', fontWeight: '700', marginTop: 4 },
   deleteBtn: { paddingLeft: 4 },
   deleteIcon: { fontSize: 16 },
 });

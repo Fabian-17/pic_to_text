@@ -26,6 +26,8 @@ export type Database = {
           quality_score: number | null;
           quality_issues: string[] | null;
           status: 'processing' | 'done' | 'failed';
+          parsed_amount: number | null;
+          parsed_date: string | null;
           created_at: string;
         };
         Insert: Omit<Database['public']['Tables']['receipts']['Row'], 'id' | 'created_at'>;
